@@ -8,7 +8,9 @@ import pouchdb_adapter_memory from "pouchdb-adapter-memory";
 addPouchPlugin(PouchHttpPlugin);
 addPouchPlugin(pouchdb_adapter_memory);
 
-export async function _create() {
+let dbPromise: any = null
+
+async function _create() {
     const db = await createRxDatabase({
         name: 'clientdb',
         storage: getRxStoragePouch('memory'),
@@ -46,4 +48,9 @@ export async function _create() {
     });*/
 
     return db;
+}
+
+export async function getDb() {
+    if (!dbPromise) dbPromise = await _create()
+    return dbPromise
 }

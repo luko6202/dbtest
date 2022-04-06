@@ -1,2 +1,4 @@
 /data/
 /pouch__all_dbs__/
+node_modules
+package-lock.json
